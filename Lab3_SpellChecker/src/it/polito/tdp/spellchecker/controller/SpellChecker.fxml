@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="it.polito.tdp.spellchecker.controller.SpellCheckerController">
+<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.spellchecker.controller.SpellCheckerController">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab3_SpellChecker" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -25,7 +24,10 @@
                <children>
                   <HBox spacing="5.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli la lingua" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli la lingua">
+                           <HBox.margin>
+                              <Insets top="4.0" />
+                           </HBox.margin></Text>
                         <BorderPane HBox.hgrow="ALWAYS" />
                         <ChoiceBox fx:id="menuLingua" prefWidth="150.0" />
                      </children>

@@ -4,8 +4,6 @@ import it.polito.tdp.spellchecker.model.SpellCheckerModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,9 +14,6 @@ import javafx.scene.text.Text;
 public class SpellCheckerController {
 
 	private SpellCheckerModel model;
-
-	ObservableList<String> lingue = FXCollections.observableArrayList("rsc/English.txt", "rsc/Italian.txt",
-			"rsc/Italian_back.txt");
 
 	@FXML
 	private ResourceBundle resources;
@@ -69,16 +64,19 @@ public class SpellCheckerController {
 				.setText("Tempo impiegato per l'operazione: " + ((System.nanoTime() - tempoiniziale) / 1000000) + "ms");
 
 	}
+	
+	
 
 	@FXML
 	void doPulisci(ActionEvent event) {
-		
+
 		this.areaErrori.clear();
 		this.areaInserimento.clear();
 		this.numerrori.setText("");
 		this.tempocompletamento.setText("");
 
 	}
+	
 
 	public void setModel(SpellCheckerModel model) {
 		this.model = model;
@@ -93,7 +91,8 @@ public class SpellCheckerController {
 		assert numerrori != null : "fx:id=\"numerrori\" was not injected: check your FXML file 'SpellChecker.fxml'.";
 		assert btnPulisci != null : "fx:id=\"btnPulisci\" was not injected: check your FXML file 'SpellChecker.fxml'.";
 		assert tempocompletamento != null : "fx:id=\"tempocompletamento\" was not injected: check your FXML file 'SpellChecker.fxml'.";
-		menuLingua.setItems(lingue);
-		menuLingua.setValue(lingue.get(0));
+		model = new SpellCheckerModel();
+		menuLingua.setItems(model.getElencoDizionari());
+		menuLingua.setValue(model.getElencoDizionari().get(0));
 	}
 }

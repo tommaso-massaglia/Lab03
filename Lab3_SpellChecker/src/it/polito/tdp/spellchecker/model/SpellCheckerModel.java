@@ -1,6 +1,7 @@
 package it.polito.tdp.spellchecker.model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +9,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 
 public class SpellCheckerModel {
 
@@ -67,8 +72,10 @@ public class SpellCheckerModel {
 	}
 
 	/**
-	 * Restituisce una lista contenente le parole giuste dell'ultimo controllo effettuato
-	 * @return	List contenente le parole
+	 * Restituisce una lista contenente le parole giuste dell'ultimo controllo
+	 * effettuato
+	 * 
+	 * @return List contenente le parole
 	 */
 	public List<String> paroleCorrette() {
 		List<String> parolecorrette = new LinkedList<String>();
@@ -80,8 +87,10 @@ public class SpellCheckerModel {
 	}
 
 	/**
-	 * Restituisce una lista contenente le parole sbagliate dell'ultimo controllo effettuato
-	 * @return	List contenente le parole
+	 * Restituisce una lista contenente le parole sbagliate dell'ultimo controllo
+	 * effettuato
+	 * 
+	 * @return List contenente le parole
 	 */
 	public List<String> paroleSbagliate() {
 		List<String> parolesbagliate = new LinkedList<String>();
@@ -91,10 +100,28 @@ public class SpellCheckerModel {
 		}
 		return parolesbagliate;
 	}
-	
+
+	/**
+	 * Ripulisce il modello di tutti i dati salvati
+	 */
 	public void clear() {
 		this.dizionario.clear();
 		this.output.clear();
-		this.ultimodizionarioaggiunto="";
+		this.ultimodizionarioaggiunto = "";
+	}
+	
+	
+	/**
+	 * Elenco dei dizionari disponibili
+	 * @return {@link ObservableList<String>} contenente i nomi dei dizionari
+	 */
+	public ObservableList<String> getElencoDizionari() {
+		File folder = new File("rsc");
+		File[] listOfFiles = folder.listFiles();
+		ObservableList<String> elencofile = FXCollections.observableArrayList();
+		for (File f : listOfFiles) {
+			elencofile.add("rsc/" + f.getName());
+		}
+		return elencofile;
 	}
 }
